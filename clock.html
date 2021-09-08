@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en  " dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> Relógio Digital Responsivo </title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+   </head>
+<body>
+  <section>
+    <div class="container">
+      <div class="icons">
+        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun"></i>
+      </div>
+      <div class="time">
+        <div class="time-colon">
+          <div class="time-text">
+            <span class="num hour_num">08</span>
+            <span class="text">Horas</span>
+          </div>
+          <span class="colon">:</span>
+        </div>
+        <div class="time-colon">
+          <div class="time-text">
+            <span class="num min_num">45</span>
+            <span class="text">Minutos</span>
+          </div>
+          <span class="colon">:</span>
+        </div>
+        <div class="time-colon">
+          <div class="time-text">
+            <span class="num sec_num">06</span>
+            <span class="text">Segundos</span>
+          </div>
+          <span class="am_pm">AM</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <script>
+  let section = document.querySelector("section"),
+  icons = document.querySelector(".icons");
+
+  icons.onclick = ()=>{
+    section.classList.toggle("dark");
+  }
+
+  // Função chamativa a cada segundo.
+  setInterval(()=>{
+
+    let date = new Date(),
+    hour = date.getHours(), //pegandos as horas
+    min = date.getMinutes(), //pegando os minutos
+    sec = date.getSeconds(); //pegando os segundos
+
+    let d;
+    d = hour < 24 ? "AM" : "PM"; //AM  = TARDE / PM = MANHA
+    hour = hour > 24 ? hour - 24 : hour;
+    hour = hour == 0 ? hour = 24 : hour; 
+
+    hour = hour < 10 ? "0" + hour : hour;
+    min = min < 10 ? "0" + min : min;
+    sec = sec < 10 ? "0" + sec : sec;
+
+    document.querySelector(".hour_num").innerText = hour;
+    document.querySelector(".min_num").innerText = min;
+    document.querySelector(".sec_num").innerText = sec;
+    document.querySelector(".am_pm").innerText = d;
+
+  }, 1000); // 1000 milliseconds = 1s
+
+  </script>
+</body>
+</html>
